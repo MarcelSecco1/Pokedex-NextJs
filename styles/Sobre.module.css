@@ -1,0 +1,12 @@
+.sobre {
+    text-align: center;
+  }
+  
+  .sobre h1 {
+    font-size: 2em;
+    margin-bottom: 1em;
+  }
+  
+  .sobre p {
+    margin-bottom: 1.5em;
+  }

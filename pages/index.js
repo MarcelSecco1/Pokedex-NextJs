@@ -1,8 +1,31 @@
-export default function Home() {
+export async function getStaticProps() {
+  const maxPokemons = 251;
+  const api = "https://pokeapi.co/api/v2/pokemon?limit=" + maxPokemons;
+
+  const res = await fetch(api);
+  const data = await res.json();
+
+  data.results.forEach((item, index) => {
+    item.id = index + 1;
+  });
+
+  return {
+    props: { pokemons: data.results },
+  };
+}
+
+export default function Home({ pokemons }) {
   return (
     <div>
-      <h1>Home</h1>
-      <p>Welcome to the Next.js app!</p>
+      <h1>PokeNext</h1>
+
+      <ul>
+        {pokemons.map((pokemon) => (
+          <li key={pokemon.id}>
+            {pokemon.name}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
